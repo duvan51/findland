@@ -1,1 +1,1 @@
-// archivo para mantener carpeta hasta que halla código para subir
+// archivo para mantener carpeta hasta que haya código para subir
