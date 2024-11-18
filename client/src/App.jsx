@@ -22,8 +22,6 @@ import Sealer from "./views/plattform/Sealer"
 import SealerDashboard from "./components/plattform/SealerDashboard"
 import ProtectedRoute from "./components/auth/ProtectedRoute"
 
-
-
 const router = createBrowserRouter([
   {
     path: '/',
