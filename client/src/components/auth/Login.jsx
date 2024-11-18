@@ -5,7 +5,7 @@ import { useFormStatus } from 'react-dom'
 import { signup } from '../../lib/auth'
 
 import { useDispatch } from 'react-redux'
-import { getUser } from '../../redux/slices/userSlices'
+import { setUser } from '../../redux/slices/userSlices'
 
 export default function Login() {
   const dispatch = useDispatch()
@@ -14,7 +14,7 @@ export default function Login() {
 
   useEffect(() => {
     if (state && state.data) {
-      dispatch(getUser(state.data))
+      dispatch(setUser(state.data))
     }
   }, [state])
   return (
