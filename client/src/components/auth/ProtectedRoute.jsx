@@ -1,10 +1,9 @@
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../AuthContext';
 import PropTypes from 'prop-types'
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ allowedRoles }) => {
-  const { user } = useAuth();
+  const user = useSelector((state) => state.user.user);
 
   return allowedRoles.includes(user.role) ? (
     <Outlet />
