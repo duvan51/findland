@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { IoChevronBackSharp } from "react-icons/io5";
+
+
 
 export default function Navbar() {
   return (
-    <header className="w-screen h-auto flex items-center justify-between">
-      <Link to='/'><h1>Brand & Logo</h1></Link>
-    </header>
+    <div className="">
+      <Link to='/'><IoChevronBackSharp /><h1>Brand & Logo</h1></Link>
+    </div>
   )
 }
