@@ -26,8 +26,8 @@ export default function Login() {
 
 
   return (
-    <div className="px-6 md:px-0  flex justify-center content-center w-full h-full flex-wrap">
-      <div className="h-96 w-96 flex flex-col gap-6">
+    <div className="px-6 md:px-0  flex justify-center content-center  h-screen flex-wrap">
+      <div className=" w-96 flex flex-col gap-6">
         <div>
           <div className="flex w-full justify-center">
             <div className=" w-32 h-32 bg-red-500 rounded-full ">
@@ -90,11 +90,10 @@ export default function Login() {
             <Link className="flex w-full justify-center">olvide la Contraseña</Link>
             <div className="flex w-full gap-2">
               <div>No tienes una cuenta aun? </div>
-              <Link to="/" className="text-blue-700 hover:text-blue-500">Registrate</Link>
+              <Link to="/register" className="text-blue-700 hover:text-blue-500">Registrate</Link>
             </div>
           </div>
         </div>
-
 
       </div>
     </div>
