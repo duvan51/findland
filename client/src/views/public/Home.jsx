@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 export default function Home () {
   return (
-    <div className="w-screen h-screen bg-background text-foreground">
-      component home
+    <div className="w-screen h-screen flex items-center justify-center gap-20 bg-background text-foreground">
+      component home <Link to='/register'>Comenzar</Link>
     </div>
   )
 }

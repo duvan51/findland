@@ -9,16 +9,11 @@ export default function Temp() {
   const { pending } = useFormStatus()
 
   useEffect(() => {
-    if (state && state.errors) {
-      console.log({ errors: state.errors })
+    if (state?.data) {
+      console.log(state.data)
     }
   }, [state])
 
-  const isSelectedClass = "font-bold text-[18px] text-black underline underline-offset-8 cursor-pointer"
-  const noSelectedClass = "font-normal text-[18px] text-black cursor-pointer"
-  const [isFirstForm, setIsFirstForm] = useState(true)
-  const [isInversor, setIsInversor] = useState(true)
-  const [openPrefixList, setOpenPrefixList] = useState(false)
   const initialDataState = {
     firstName: '',
     lastName: '',
@@ -32,6 +27,13 @@ export default function Temp() {
     confirm: ''
   }
   const [data, setData] = useState(initialDataState)
+  const isSelectedClass = "font-bold text-[18px] text-black underline underline-offset-8 cursor-pointer"
+  const noSelectedClass = "font-normal text-[18px] text-black cursor-pointer"
+  const [isFirstForm, setIsFirstForm] = useState(true)
+  const [isInversor, setIsInversor] = useState(true)
+  const [openPrefixList, setOpenPrefixList] = useState(false)
+  const [showPass, setShowPass] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const handleCountry = country => {
     const found = prefix.find(pref => pref.country === country)
@@ -54,39 +56,16 @@ export default function Temp() {
   }
 
   const handleChange = event => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value
-    })
-  }
-
-  const handleVisibilityPass1 = () => {
-    const $pass1 = document.getElementById('password')
-    const $eye1 = document.getElementById('eye1-off')
-    const $eye2 = document.getElementById('eye1-on')
-    if ($pass1.type === "text") {
-      $pass1.type = "password"
-      $eye1.classList.toggle('hidden')
-      $eye2.classList.toggle('hidden')
+    if (event.target.name === 'phone') {
+      setData({
+        ...data,
+        phone: Number(event.target.value)
+      })
     } else {
-      $pass1.type = "text"
-      $eye1.classList.toggle('hidden')
-      $eye2.classList.toggle('hidden')
-    }
-  }
-
-  const handleVisibilityPass2 = () => {
-    const $pass2 = document.getElementById('confirm')
-    const $eye1 = document.getElementById('eye2-off')
-    const $eye2 = document.getElementById('eye2-on')
-    if ($pass2.type === "text") {
-      $pass2.type = "password"
-      $eye1.classList.toggle('hidden')
-      $eye2.classList.toggle('hidden')
-    } else {
-      $pass2.type = "text"
-      $eye1.classList.toggle('hidden')
-      $eye2.classList.toggle('hidden')
+      setData({
+        ...data,
+        [event.target.name]: event.target.value
+      })
     }
   }
 
@@ -120,19 +99,22 @@ export default function Temp() {
               <input
                 className="h-[50px] border focus:border-2 px-4"
                 name="firstName"
+                id="firstName"
                 value={data.firstName}
                 onChange={handleChange}
               />
-              {state?.errors?.firstName && <p>{state.errors.firstName}</p>}
+              {state?.errors?.firstName && <p className="text-red-400" >{state.errors.firstName}</p>}
             </div>
             <div className="flex flex-col gap-[11px] self-stretch">
               <span className="font-normal text-[18px] text-black">Apellido</span>
               <input
                 className="h-[50px] border focus:border-2 px-4"
                 name="lastName"
+                id="lastName"
                 onChange={handleChange}
+                value={data.lastName}
               />
-              {state?.errors?.lastName && <p>{state.errors.lastName}</p>}
+              {state?.errors?.lastName && <p className="text-red-400" >{state.errors.lastName}</p>}
             </div>
             <div className="flex flex-col gap-[11px] self-stretch">
               <span className="font-normal text-[18px] text-black">País de residencia</span>
@@ -156,8 +138,8 @@ export default function Temp() {
                   ))
                 }
               </datalist>
-              {state?.errors?.country && <p>{state.errors.country}</p>}
             </div>
+            {state?.errors?.country && <p className="text-red-400" >{state.errors.country}</p>}
           </div>
           <div className="w-[374px] flex flex-col gap-[15px]">
             <div className="flex flex-col gap-[11px] self-stretch">
@@ -165,10 +147,11 @@ export default function Temp() {
               <input
                 className="h-[50px] border focus:border-2 px-4"
                 name="email"
+                id="email"
                 value={data.email}
                 onChange={handleChange}
               />
-              {state?.errors?.email && <p>{state.errors.email}</p>}
+              {state?.errors?.email && <p className="text-red-400" >{state.errors.email}</p>}
             </div>
             <div className="flex flex-col gap-[11px] self-stretch">
               <span className="font-normal text-[18px] text-black">Teléfono</span>
@@ -179,7 +162,9 @@ export default function Temp() {
                   <img className="size-[14px] cursor-pointer hover:scale-150" src="/assets/icons/arrow-down.svg" onClick={() => setOpenPrefixList(true)} />
                   <input
                     type="text"
-                    className="hidden" name='prefix'
+                    className="hidden"
+                    name='prefix'
+                    id="prefix"
                     value={data.prefix}
                     onChange={handleChange}
                   />
@@ -192,16 +177,19 @@ export default function Temp() {
                       ))
                     }
                   </ul>
-                  {state?.errors?.lastName && <p>{state.errors.lastName}</p>}
                 </div>
                 <input
                   type="number"
                   className="w-[235px] h-[50px] border focus:border-2 px-4"
+                  id="phone"
                   name="phone"
                   value={data.phone}
                   onChange={handleChange}
                 />
-                {state?.errors?.phone && <p>{state.errors.phone}</p>}
+              </div>
+              <div className="flex flex-col">
+                {state?.errors?.prefix && <p className="text-red-400" >{state.errors.prefix}</p>}
+                {state?.errors?.phone && <p className="text-red-400" >{state.errors.phone}</p>}
               </div>
             </div>
             <div className="flex flex-col gap-[19px] self-stretch">
@@ -232,7 +220,7 @@ export default function Temp() {
                   <label htmlFor='beneficiary' className="font-normal text-[20px] text-black">Pedir financiación</label>
                 </div>
               </div>
-              {state?.errors?.role && <p>{state.errors.role}</p>}
+              {state?.errors?.role && <p className="text-red-400" >{state.errors.role}</p>}
             </div>
           </div>
         </div>
@@ -240,7 +228,7 @@ export default function Temp() {
           <div className="flex flex-col gap-[11px] self-stretch relative">
             <span className="font-normal text-[18px] text-black">Contraseña</span>
             <input
-              type="text"
+              type={showPass ? "text" : "password"}
               className="h-[50px] border focus:border-2 px-4"
               name="password"
               id="password"
@@ -248,25 +236,25 @@ export default function Temp() {
               onChange={handleChange}
             />
             <img
-              className="hidden size-6 top-[53px] right-2 absolute z-10"
+              className={showPass ? "size-6 top-[53px] right-2 absolute z-10" : "hidden"}
               src="/assets/icons/pass-visible-off.svg"
               alt="pass invisible"
               id="eye1-off"
-              onClick={handleVisibilityPass1}
+              onClick={() => setShowPass(prev => !prev)}
             />
             <img
-              className="size-6 top-[53px] right-2 absolute z-10"
+              className={!showPass ? "size-6 top-[53px] right-2 absolute z-10" : "hidden"}
               src="/assets/icons/pass-visible-on.svg"
               alt="pass invisible"
               id="eye1-on"
-              onClick={handleVisibilityPass1}
+              onClick={() => setShowPass(prev => !prev)}
             />
-            {state?.errors?.password && <p>{state.errors.password}</p>}
+            {state?.errors?.password && <p className="text-red-400" >{state.errors.password}</p>}
           </div>
           <div className="flex flex-col gap-[11px] self-stretch relative">
             <span className="font-normal text-[18px] text-black">Repetir contraseña</span>
             <input
-              type="text"
+              type={showConfirm ? "text" : "password"}
               className="h-[50px] border focus:border-2 px-4"
               name="confirm"
               id="confirm"
@@ -274,20 +262,20 @@ export default function Temp() {
               onChange={handleChange}
             />
             <img
-              className="hidden size-6 top-[53px] right-2 absolute z-10"
+              className={showConfirm ? "size-6 top-[53px] right-2 absolute z-10" : "hidden"}
               src="/assets/icons/pass-visible-off.svg"
               alt="pass invisible"
               id="eye2-off"
-              onClick={handleVisibilityPass2}
+              onClick={() => setShowConfirm(prev => !prev)}
             />
             <img
-              className="size-6 top-[53px] right-2 absolute z-10"
+              className={!showConfirm ? "size-6 top-[53px] right-2 absolute z-10" : "hidden"}
               src="/assets/icons/pass-visible-on.svg"
               alt="pass invisible"
               id="eye2-on"
-              onClick={handleVisibilityPass2}
+              onClick={() => setShowConfirm(prev => !prev)}
             />
-            {state?.errors?.confirm && <p>{state.errors.confirm}</p>}
+            {state?.errors?.confirm && <p className="text-red-400" >{state.errors.confirm}</p>}
           </div>
           <span className="font-normal text-[18px] text-black">Configurar Autenticación de 2 Pasos</span>
         </div>
