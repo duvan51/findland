@@ -6,7 +6,7 @@
  * @param costosOpcionales - Costos asociados, como comisiones o pérdidas. Valor por defecto: 0.
  * @returns Rendimiento promedio neto en porcentaje.
  */
-export function calcularRendimientoPromedio(
+export default function calcularRendimientoPromedio(
   ingresosTotales: number,
   capitalInvertido: number,
   costosOpcionales: number = 0
