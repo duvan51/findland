@@ -1,0 +1,1 @@
+En esta carpeta crear las funciones para realizar peticiones al backend
