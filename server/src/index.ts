@@ -5,11 +5,6 @@ const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   try {
-    /**
-     * Durante el desarrollo para dropear database 
-     * se cambia temporalmente force a true
-     * No olvidar volver a poner a false!!!
-     */
     await sequelize.sync({ force: false });     
     console.log('Database connected successfully.');
 
