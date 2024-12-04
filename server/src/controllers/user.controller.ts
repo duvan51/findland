@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import {
-  getAllUsers, 
-  createUser, 
-  getUserById, 
-  updateUser, 
+  getAllUsers,
+  createUser,
+  getUser,
+  updateUser,
   deleteUser
 } from '../services/user.service';
 
@@ -13,9 +13,9 @@ export const getUsers = async (req: Request, res: Response) => {
 };
 
 export const createUserHandler = async (req: Request, res: Response) => {
-  const { name, email } = req.body;
+  const { data } = req.body;
   try {
-    const user = await createUser(name, email);
+    const user = await createUser(data);
     res.status(201).json(user);
   } catch (error) {
     res.status(400).json({ error: 'Error creating user.' });
@@ -23,8 +23,8 @@ export const createUserHandler = async (req: Request, res: Response) => {
 };
 
 export const getUserHandler = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const user = await getUserById(Number(id));
+  const { data } = req.body;
+  const user = await getUser(data);
   if (!user) return res.status(404).json({ error: 'User not found.' });
 
   res.json(user);
@@ -32,7 +32,7 @@ export const getUserHandler = async (req: Request, res: Response) => {
 
 export const updateUserHandler = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const user = await updateUser(Number(id), req.body);
+  const user = await updateUser(id, req.body);
   if (!user) return res.status(404).json({ error: 'User not found.' });
 
   res.json(user);
@@ -40,7 +40,7 @@ export const updateUserHandler = async (req: Request, res: Response) => {
 
 export const deleteUserHandler = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const user = await deleteUser(Number(id));
+  const user = await deleteUser(id);
   if (!user) return res.status(404).json({ error: 'User not found.' });
 
   res.json({ message: 'User deleted successfully.' });

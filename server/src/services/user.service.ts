@@ -1,28 +1,44 @@
-import User from '../database/models/user.model';
+import prisma from '../lib/database';
+import { hashSync } from 'bcryptjs'
+import { User } from '@prisma/client';
 
 export const getAllUsers = async () => {
-  return await User.findAll();
+  return await prisma.user.findMany();
 };
 
-export const createUser = async (name: string, email: string) => {
-  return await User.create({ name, email });
+export const createUser = async (data: User) => {
+  data.password = hashSync(data.password, 10)
+  return await prisma.user.create({
+    data
+  });
 };
 
-export const getUserById = async (id: number) => {
-  return await User.findByPk(id);
+export const getUser = async (data: User) => {
+  console.log(data);
+  
+  return await prisma.user.findFirst({
+    where: data
+  })
 };
 
-export const updateUser = async (id: number, data: Partial<{ name: string; email: string }>) => {
-  const user = await User.findByPk(id);
+export const updateUser = async (id: string, data: User) => {
+  const user = await prisma.user.findFirst({
+    where: { id }
+  })
   if (!user) return null;
 
-  return await user.update(data);
+  return await prisma.user.update({
+    where: { id },
+    data
+  });
 };
 
-export const deleteUser = async (id: number) => {
-  const user = await User.findByPk(id);
-  if (!user) return null;
-
-  await user.destroy();
+export const deleteUser = async (id: string) => {
+  const user = await prisma.user.update(
+    {
+      where: { id },
+      data: { isDeleted: true }
+    }
+  );
   return user;
 };
