@@ -6,20 +6,20 @@ export const SignupFormSchema = z.object({
     .min(3, { message: 'El nombre debe tener al menos 3 letras.' })
     .trim(),
   lastName: z
-    .string({ message: 'Complete este campo con su appellido.' })
+    .string({ message: 'Complete este campo con su apellido.' })
     .trim(),
   country: z
-    .string({ message: 'Necesitamos conocer donde recide.' })
+    .string({ message: 'Necesitamos conocer donde reside.' })
     .trim(),
   email: z
     .string()
     .email({ message: 'Por favor, ingresar un email válido.' })
     .trim(),
   prefix: z
-    .string({ message: 'Complete este campo con el cçodigo de su área.' })
+    .string({ message: 'Complete campo de codigo de su área.' })
     .trim(),
   phone: z
-    .number({ message: 'Complete este campo con su número de telefono.' }),
+    .string({ message: 'Complete campo de número de telefono.' }),
   password: z
     .string()
     .min(8, { message: 'Debe tener un mínimo de 8 caracteres' })
@@ -30,13 +30,13 @@ export const SignupFormSchema = z.object({
     })
     .trim(),
   confirm: z
-    .string({message: 'requerido'})
+    .string({message: 'Confirmar contraseña'})
     .trim(),
   role: z
     .string({ message: 'Elegir 1 opcion' })
 })
   .refine((data) => data.password === data.confirm, {
-    message: "Passwords don't match",
+    message: "No coinciden contraseñas",
     path: ["confirm"], // path of error
   })
 
