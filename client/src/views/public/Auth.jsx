@@ -6,7 +6,6 @@ import Navbar from '../../components/ui/Navbar';
 export default function Auth () {
   return (
     <div className="w-full h-screen bg-background text-foreground">
-      <Navbar />
       <Outlet />
     </div>
   )

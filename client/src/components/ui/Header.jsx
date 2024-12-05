@@ -1,7 +1,15 @@
+import { Link } from "react-router-dom";
+
+
+
 export default function Header() {
+
+
+
+
   return (
-    <div className="w-full bg-background text-foreground text-lg">
-      <div className="flex w-full  px-10 border-b-2 border-black py-4">
+    <div className="w-full bg-colorSecondary text-colorPrimary text-lg">
+      <div className="flex w-full  px-10 border-b-2  py-4">
 
         <div className="w-1/5 flex">
            <div className="flex w-full  items-center gap-4" >
@@ -35,10 +43,15 @@ export default function Header() {
             >   
                 <div className="border-solid border-l-gray-300 border-l-2 h-12"></div>
                 <div>
-                    <div>Iniciar sesion</div>
+                    <Link to={`/login`}>Iniciar sesion</Link>
                 </div>
                 <div>
-                    <div className="bg-gray-200 px-3 py-2">REGISTRARME</div>
+                    <Link
+                        to={`/register`}  
+                        className="bg-colorFourth px-3 py-2 cursor-pointer rounded-md font-semibold"
+                        >
+                        REGISTRARME
+                    </Link >
                 </div>
             </div>
         </div>
@@ -46,3 +59,4 @@ export default function Header() {
     </div>
   );
 }
+
