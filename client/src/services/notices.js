@@ -12,10 +12,10 @@ const url = "https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=A
 export async function getNotices() {
   try {
     const data = await axios.get(`${url}${key}`)
-    const notices = data.data.feed
+    const notices = data?.data.feed
     
     // Tomamos un máximo de 4 noticias aleatorias
-    const randomNotices = notices.sort(() => Math.random() - 0.5).slice(0, 4);
+    const randomNotices = notices?.sort(() => Math.random() - 0.5).slice(0, 4);
     
     return randomNotices
 

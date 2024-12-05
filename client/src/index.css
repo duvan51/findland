@@ -1,3 +1,9 @@
+@import 'temp.css';
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
