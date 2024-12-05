@@ -14,8 +14,8 @@ export default function Temp() {
   const { pending } = useFormStatus();
 
   useEffect(() => {
-    if (state && state.errors) {
-      console.log({ errors: state.errors });
+    if (state?.data) {
+      console.log(state.data)
     }
   }, [state]);
 
@@ -33,11 +33,13 @@ export default function Temp() {
     prefix: 54,
     flag: "/assets/flags/Flag_of_Argentina.svg.webp",
     phone: 0,
-    role: "",
-    password: "",
-    confirm: "",
-  };
-  const [data, setData] = useState(initialDataState);
+    role: '',
+    password: '',
+    confirm: ''
+  }
+  const [data, setData] = useState(initialDataState)
+  const [showPass, setShowPass] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const handleCountry = (country) => {
     const found = prefix.find((pref) => pref.country === country);
@@ -59,12 +61,6 @@ export default function Temp() {
     setOpenPrefixList(false);
   };
 
-  const handleChange = (event) => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value,
-    });
-  };
 
   const handleVisibilityPass1 = () => {
     const $pass1 = document.getElementById("password");
@@ -95,6 +91,24 @@ export default function Temp() {
       $eye2.classList.toggle("hidden");
     }
   };
+    
+  const handleChange = event => {
+    if (event.target.name === 'phone') {
+      setData({
+        ...data,
+        phone: Number(event.target.value)
+      })
+    } else {
+      setData({
+        ...data,
+        [event.target.name]: event.target.value
+      })
+    }
+  };
+
+
+
+
 
   return (
     <div
@@ -478,4 +492,6 @@ export default function Temp() {
       </div>
     </div>
   );
+
+
 }
