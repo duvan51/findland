@@ -9,6 +9,11 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        "our-white": 'var(--our-white)',
+        "our-green": 'var(--our-green)',
+        "primary": 'var(--our-blue)',
+        "darker-blue": 'var(--our-darker-blue)',
+        "our-red": 'var(--our-red)',
       },
     },
   },

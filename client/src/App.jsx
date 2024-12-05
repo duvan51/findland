@@ -8,7 +8,7 @@ import Register from "./components/auth/Register"
 import Login from "./components/auth/Login"
 
 // customers pages and components
-import Inversor from "./views/customers/inversor"
+import Inversor from "./views/customers/Inversor"
 import InversorDashboard from "./components/customers/InversorDashboard"
 import Beneficiary from "./views/customers/Beneficiary"
 import BeneficiaryDashboard from "./components/customers/BeneficiaryDashboard"
