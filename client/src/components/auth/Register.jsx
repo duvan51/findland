@@ -25,6 +25,7 @@ export default function Temp() {
   const [isFirstForm, setIsFirstForm] = useState(true);
   const [isInversor, setIsInversor] = useState(true);
   const [openPrefixList, setOpenPrefixList] = useState(false);
+
   const initialDataState = {
     firstName: "",
     lastName: "",
@@ -38,6 +39,7 @@ export default function Temp() {
     confirm: ''
   }
   const [data, setData] = useState(initialDataState)
+
   const [showPass, setShowPass] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
 
@@ -60,7 +62,6 @@ export default function Temp() {
     });
     setOpenPrefixList(false);
   };
-
 
   const handleVisibilityPass1 = () => {
     const $pass1 = document.getElementById("password");
@@ -165,7 +166,6 @@ export default function Temp() {
               <div
                 className={
                   isFirstForm ? "w-full flex gap-[118px] my-4" : "hidden"
-                }
               >
                 <div className="w-full flex flex-col gap-6">
                   {/**name and apellido */}
@@ -468,7 +468,6 @@ export default function Temp() {
                   Configurar Autenticación de 2 Pasos
                 </span>
               </div>
-
               <div className="flex justify-center">
                 <button
                   disabled={pending}
