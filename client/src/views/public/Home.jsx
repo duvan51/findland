@@ -2,6 +2,7 @@ import Header from "../../components/ui/Header";
 import FlipCard from "../../components/FlipCard/FlipCard";
 import Carousel from "../../components/carrouselNoticias/Carousel";
 import Acordion from "../../components/acordeonPreguntas/acordPre.jsx";
+import SendEmail from "../../components/sendContactoEmail/sendEmail.jsx";
 
 import { GrScorecard } from "react-icons/gr";
 import { MdOutlinePhoneCallback } from "react-icons/md";
@@ -307,107 +308,7 @@ export default function Home() {
               email...
             </div>
             <div className="flex gap-20 w-full justify-center">
-              
-              <form  className="flex flex-col gap-4 w-[48rem]">
-                
-                <div className="py-4 flex flex-col gap-3">
-                  
-                  <div className="flex gap-4 w-full  ">
-                  
-                    <div className="flex flex-col w-1/2 gap-1">
-                      <label htmlFor="email">Nombre</label>
-                      <input
-                      className="w-100 p-2 b-1 border bg-colorSecondary"
-                      id="Nombre"
-                      name="Nombre"
-                      type="text"
-                      placeholder="Mr."
-                      />
-                    </div>
-                  
-
-                    <div className="flex flex-col w-1/2 gap-1">
-                      <label htmlFor="email">Email</label>
-                      <input
-                      className="w-100 p-2 b-1 border  bg-colorSecondary"
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="email@mail.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4 w-full justify-center">
-
-                    <div className="flex flex-col  w-1/2  gap-1">
-                      <label htmlFor="email">Pais de residencia</label>
-                      <input
-                      className="w-100 p-2 b-1 border  bg-colorSecondary"
-                      id="pais"
-                      name="pais"
-                      type="text"
-                      placeholder="Colombia"
-                      />
-                    </div>
-                  
-
-                    <div className="flex flex-col  w-1/2  gap-1">
-                      <label htmlFor="email">Telefono</label>
-                      <input
-                      className="w-100 p-2 b-1 border  bg-colorSecondary"
-                      id="telefono"
-                      name="telefono"
-                      type="text"
-                      placeholder="+ 00 000 000 000"
-                      />
-                    </div>
-
-                  </div>
-
-                  <div className="flex gap-4 w-full justify-center">
-
-                    <div className="flex flex-col w-full  gap-1">
-                      <label htmlFor="email">Motivo de consulta</label>
-                      <input
-                      className="w-100 p-2 b-1 border  bg-colorSecondary"
-                      id="motivoConsulta"
-                      name="motivoConsulta"
-                      type="text"
-                      placeholder="Invertir dinero"
-                      />
-                    </div>
-                    
-                  </div>
-                  <div className="flex gap-4 w-full justify-center">
-
-                    <div className="flex flex-col w-full  gap-1">
-                      <label htmlFor="email">Motivo de consulta</label>
-                      <textarea
-                      className="w-100 p-2 b-1 border  bg-colorSecondary"
-                      id="detalle"
-                      name="detalle"
-                      type="text"
-                      placeholder="Tengo este dinero y me gustaria invertirlo para...."
-                      />
-                    </div>
-                    
-                  </div>
-                </div>
-
-
-
-                <div className="flex justify-center">
-                  <button
-                    
-                    type="submit"
-                    className="bg-colorFourth px-4 text-xl py-2 cursor-pointer rounded-md font-semibold w-auto"
-                  >
-                    Enviar Consulta
-                  </button>
-                </div>
-              </form>
-
+              <SendEmail />
             </div>
 
           </div>
