@@ -83,34 +83,47 @@ export default function Home() {
                     ingresa el monto que querrias invertir y en que moneda
                   </div>
                   <div className="flex justify-center gap-2">
-                    <input className="w-3/4 h-8" />
-                    <input className="w-1/4" />
+                    <input className="w-3/4 h-8" type="number"/>
+                    <select className="w-1/4 p-2 border text-[10px] h-8 ">
+                        <option value="option1">
+                          🇺🇸 USD
+                        </option>
+                        <option value="option2">co COP</option>
+                        <option value="option3">ar ARG</option>
+                    </select>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
                   <div className="text-lg font-bold">
-                    Monto de inversion inicial
+                    Plazo de inversion
                   </div>
                   <div className="text-xs">
-                    ingresa el monto que querrias invertir y en que moneda
+                    ingresa el plazo en el que querrias invertir tu dinero
                   </div>
                   <div className="flex justify-center gap-2">
                     <input className="w-3/4 h-8" />
-                    <input className="w-1/4" />
+                    <select className="w-1/4 p-2 border text-[10px] h-8 ">
+                        <option value="option1">Anual</option>
+                        <option value="option2">Mensual</option>
+                        <option value="option3">Trimestral</option>
+                    </select>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
                   <div className="text-lg font-bold">
-                    Monto de inversion inicial
+                    Riesgo de inversion
                   </div>
                   <div className="text-xs">
-                    ingresa el monto que querrias invertir y en que moneda
+                    ingresa tu perfil de inversor
                   </div>
                   <div className="flex justify-center gap-2">
-                    <input className="w-3/4 h-8" />
-                    <input className="w-1/4" />
+                    <select className="w-full p-2 border text-base  ">
+                        <option value="option1">Alta</option>
+                        <option value="option2">Leve</option>
+                        <option value="option3">Sin riesgo</option>
+                    </select>
                   </div>
                 </div>
 
@@ -129,7 +142,7 @@ export default function Home() {
         </div>
 
         {/** 2 section */}
-        <div className="w-full flex flex-col pb-28 px-10 gap-10">
+        <div id="Beneficios" className="w-full flex flex-col pb-28 px-10 gap-10">
           <div className="flex w-full justify-center text-4xl">Beneficios</div>
           <div className="w-full flex flex-col gap-10">
             <div className="flex justify-evenly">
@@ -197,7 +210,7 @@ export default function Home() {
         </div>
 
         {/** 4 section  */}
-        <div className="w-full  flex flex-col pb-28  gap-10 ">
+        <div id="Noticias" className="w-full  flex flex-col pb-28  gap-10 ">
           <Carousel />
         </div>
 
@@ -272,7 +285,7 @@ export default function Home() {
         </div>
 
         {/** 6 section  */}
-        <div className="w-full  flex  justify-center pb-28 px-10 gap-20 ">
+        <div  id="Preguntas" className="w-full  flex  justify-center pb-28 px-10 gap-20 ">
           
           <div className="w-4/5 flex flex-col gap-10 items-center">
             <div className="flex w-full text-4xl">
@@ -285,7 +298,7 @@ export default function Home() {
         </div>
 
         {/** 7 section  */}
-        <div className="w-full bg-colorSecondary text-colorPrimary py-14 flex flex-col pb-28 px-10 gap-5">
+        <div id="Contacto" className="w-full bg-colorSecondary text-colorPrimary py-14 flex flex-col pb-28 px-10 gap-5">
           <div className="flex w-full justify-center text-4xl">Contacto</div>
 
           <div className="w-full flex flex-col gap-10 items-center">

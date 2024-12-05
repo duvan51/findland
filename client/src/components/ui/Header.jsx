@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Logo from "../../assets/Logo.png";
 
 
 
@@ -8,13 +9,13 @@ export default function Header() {
 
 
   return (
-    <div className="w-full bg-colorSecondary text-colorPrimary text-lg">
+    <div className="w-full bg-colorSecondary text-colorPrimary text-lg ">
       <div className="flex w-full  px-10 border-b-2  py-4">
 
         <div className="w-1/5 flex">
            <div className="flex w-full  items-center gap-4" >
-                <div className="rounded-full bg-black w-16 h-16">
-                    <img src="" />
+                <div className="rounded-full w-16 h-16">
+                    <img src={Logo} />
                 </div>
                 <div>
                     <div>Financial.land</div>
@@ -25,10 +26,10 @@ export default function Header() {
 
         <div className="w-3/5 flex">
             <div className="flex w-full  items-center justify-evenly">
-                <div>Beneficios</div>
-                <div>Noticias</div>
-                <div>Preguntas frecuentes</div>
-                <div>Contacto</div>
+                <div className="hover:text-slate-400"><a href="#Beneficios">Beneficios</a></div>
+                <div className="hover:text-slate-400"><a href="#Noticias">Noticias</a></div>
+                <div className="hover:text-slate-400"><a href="#Preguntas">Preguntas Frecuentes</a></div>
+                <div className="hover:text-slate-400"><a href="#Contacto">Contacto</a></div>
             </div>
         </div>
 
