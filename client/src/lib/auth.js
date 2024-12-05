@@ -3,10 +3,15 @@ import { SignupFormSchema, SignInFormSchema } from './definicions'
 export async function signup(state, formData) {
   // Validate form fields
   const validatedFields = SignupFormSchema.safeParse({
-    name: formData.get('name'),
+    firstName: formData.get('firstName'),
+    lastName: formData.get('lastName'),
+    country: formData.get('country'),
     email: formData.get('email'),
+    prefix: formData.get('prefix'),
+    phone: formData.get('phone'),
+    role: formData.get('role'),
     password: formData.get('password'),
-    role: formData.get('role')
+    confirm: formData.get('confirm')
   })
  
   // If any form fields are invalid, return early
@@ -22,8 +27,14 @@ export async function signup(state, formData) {
   }  
 }
 
+
+
+
+
 export async function signin(state, formData) {
   // Validate form fields
+
+
   const validatedFields = SignInFormSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),
@@ -39,5 +50,6 @@ export async function signin(state, formData) {
   // return data to the component
   return {
     data: validatedFields.data
+    
   }  
 }
