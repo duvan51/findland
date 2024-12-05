@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import {
   getAllUsers,
   createUser,
@@ -7,41 +7,46 @@ import {
   deleteUser
 } from '../services/user.service';
 
-export const getUsers = async (req: Request, res: Response) => {
-  const users = await getAllUsers();
-  res.json(users);
+//#region OBTENER LISTA
+export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
+  const [error, users] = await getAllUsers();
+  if (error) return next(error)
+  else res.json(users);
 };
+//# endregion
 
-export const createUserHandler = async (req: Request, res: Response) => {
+//#region CREAR USUARIO
+export const createUserHandler = async (req: Request, res: Response, next: NextFunction) => {
   const { data } = req.body;
-  try {
-    const user = await createUser(data);
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(400).json({ error: 'Error creating user.' });
-  }
+  const [error, user] = await createUser(data);
+  if (error) return next(error)
+  else res.status(201).json(user);
 };
+//# endregion
 
-export const getUserHandler = async (req: Request, res: Response) => {
+//#region OBTENER USUARIO
+export const getUserHandler = async (req: Request, res: Response, next: NextFunction) => {
   const { data } = req.body;
-  const user = await getUser(data);
-  if (!user) return res.status(404).json({ error: 'User not found.' });
-
-  res.json(user);
+  const [error, user] = await getUser(data);
+  if (error) return next(error)
+  else res.json(user);
 };
+//# endregion
 
-export const updateUserHandler = async (req: Request, res: Response) => {
+//#region MODIF USUARIO
+export const updateUserHandler = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
-  const user = await updateUser(id, req.body);
-  if (!user) return res.status(404).json({ error: 'User not found.' });
-
-  res.json(user);
+  const [error, user] = await updateUser(id, req.body);
+  if (error) return next(error)
+  else return res.json(user);
 };
+//# endregion
 
-export const deleteUserHandler = async (req: Request, res: Response) => {
+//#region BORRAR USUARIO
+export const deleteUserHandler = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
-  const user = await deleteUser(id);
-  if (!user) return res.status(404).json({ error: 'User not found.' });
-
-  res.json({ message: 'User deleted successfully.' });
+  const error = await deleteUser(id);
+  if (error) return next(error)
+  else return res.json({ message: 'Usuario borrado exitosamente.' });
 };
+//# endregion
