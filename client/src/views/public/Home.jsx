@@ -2,6 +2,7 @@ import Header from "../../components/ui/Header";
 import FlipCard from "../../components/FlipCard/FlipCard";
 import Carousel from "../../components/carrouselNoticias/Carousel";
 import Acordion from "../../components/acordeonPreguntas/acordPre.jsx";
+import SendEmail from "../../components/sendContactoEmail/sendEmail.jsx";
 
 import { GrScorecard } from "react-icons/gr";
 import { MdOutlinePhoneCallback } from "react-icons/md";
@@ -24,7 +25,7 @@ export default function Home() {
         {/** 1 section */}
         <div className="w-full flex py-28 px-10">
           {/** izquierda  */}
-          <div className="w-3/5 w-full flex  justify-center">
+          <div className="w-1/2 w-full flex  justify-center">
             <div className="flex flex-col gap-14">
               <div className="flex flex-col gap-6 ">
                 <div className="text-5xl">
@@ -34,32 +35,32 @@ export default function Home() {
                 <div>
                   <div>Texto sobre invertir en inmuebles en America Latina</div>
                 </div>
-                <div className="border-b-4 w-40 border-black"></div>
+                <div className="border-b-4 w-40 border-colorFithy"></div>
               </div>
 
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-col gap-10 text-colorSecondary">
                 <div className="flex justify-between">
                   <div className="">
-                    <div className="text-7xl font-semibold">305M</div>
-                    <div className="flex justify-center">
+                    <div className="text-7xl font-bold">305M</div>
+                    <div className="flex justify-center font-semibold">
                       Monto total invertido
                     </div>
                   </div>
                   <div className="flex flex-col">
-                    <div className="text-7xl font-semibold flex justify-center">
+                    <div className="text-7xl font-bold flex justify-center">
                       14%
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center font-semibold">
                       Porcentaje de promedio de ROI
                     </div>
                   </div>
                 </div>
                 <div className="flex justify-center">
                   <div className="flex flex-col">
-                    <div className="text-7xl font-semibold flex justify-center">
+                    <div className="text-7xl font-bold flex justify-center">
                       20.000
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center font-semibold">
                       Prestarios conectados con inversores
                     </div>
                   </div>
@@ -69,7 +70,7 @@ export default function Home() {
           </div>
 
           {/**  derecha calculadora */}
-          <div className="w-2/5 flex justify-center ">
+          <div className="w-1/2 flex">
             {/**calculadora de simulacion */}
             <div className="border bg-gray-200 border-solid  w-96 rounded-md p-6">
               <div className="text-lg">Calcula tu rendimiento estimado</div>
@@ -83,43 +84,66 @@ export default function Home() {
                     ingresa el monto que querrias invertir y en que moneda
                   </div>
                   <div className="flex justify-center gap-2">
-                    <input className="w-3/4 h-8" />
-                    <input className="w-1/4" />
+                    <input className="w-3/4 h-8" type="number"/>
+                    <select className="w-1/4 p-2 border text-[10px] h-8 ">
+                        <option value="option1">
+                          🇺🇸 USD
+                        </option>
+                        <option value="option2">co COP</option>
+                        <option value="option3">ar ARG</option>
+                    </select>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
                   <div className="text-lg font-bold">
-                    Monto de inversion inicial
+                    Plazo de inversion
                   </div>
                   <div className="text-xs">
-                    ingresa el monto que querrias invertir y en que moneda
+                    ingresa el plazo en el que querrias invertir tu dinero
                   </div>
                   <div className="flex justify-center gap-2">
                     <input className="w-3/4 h-8" />
-                    <input className="w-1/4" />
+                    <select className="w-1/4 p-2 border text-[10px] h-8 ">
+                        <option value="option1">Anual</option>
+                        <option value="option2">Mensual</option>
+                        <option value="option3">Trimestral</option>
+                    </select>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
                   <div className="text-lg font-bold">
-                    Monto de inversion inicial
+                    Riesgo de inversion
                   </div>
                   <div className="text-xs">
-                    ingresa el monto que querrias invertir y en que moneda
+                    ingresa tu perfil de inversor
                   </div>
                   <div className="flex justify-center gap-2">
-                    <input className="w-3/4 h-8" />
-                    <input className="w-1/4" />
+                    <select className="w-full p-2 border text-base  ">
+                        <option value="option1">Alta</option>
+                        <option value="option2">Leve</option>
+                        <option value="option3">Sin riesgo</option>
+                    </select>
                   </div>
                 </div>
+
+                <div className="flex gap-1 justify-center">
+                  <div className="bg-colorFourth text-colorPrimary font-semibold px-3 py-2 cursor-pointer rounded-md w-64 justify-center flex">
+                    REALIZAR SIMULACION
+                  </div>
+                </div>
+
+
+
+
               </div>
             </div>
           </div>
         </div>
 
         {/** 2 section */}
-        <div className="w-full flex flex-col pb-28 px-10 gap-10">
+        <div id="Beneficios" className="w-full flex flex-col pb-28 px-10 gap-10">
           <div className="flex w-full justify-center text-4xl">Beneficios</div>
           <div className="w-full flex flex-col gap-10">
             <div className="flex justify-evenly">
@@ -187,7 +211,7 @@ export default function Home() {
         </div>
 
         {/** 4 section  */}
-        <div className="w-full  flex flex-col pb-28  gap-10 ">
+        <div id="Noticias" className="w-full  flex flex-col pb-28  gap-10 ">
           <Carousel />
         </div>
 
@@ -201,60 +225,60 @@ export default function Home() {
               <div className="flex w-full justify-around">
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Argentina</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Chile</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Uruguay</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
               </div>
 
               <div className="flex w-full justify-around">
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Bolivia</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Ecuador</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Panama</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
               </div>
 
               <div className="flex w-full justify-around">
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Brazil</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Mexico</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Paraguay</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
               </div>
 
               <div className="flex w-full justify-around">
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Colombia</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Peru</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="w-12">Guatemala</div>
-                  <div className="border w-8 border-gray-400"></div>
+                  <div className="border border-colorFithy w-10"></div>
                 </div>
               </div>
             </div>
@@ -262,11 +286,12 @@ export default function Home() {
         </div>
 
         {/** 6 section  */}
-        <div className="w-full  flex flex-col pb-28 px-10 gap-20 ">
-          <div className="flex w-full justify-center text-4xl">
-            Operamos en toda America Latina
-          </div>
-          <div className="w-full flex flex-col gap-10 items-center">
+        <div  id="Preguntas" className="w-full  flex  justify-center pb-28 px-10 gap-20 ">
+          
+          <div className="w-4/5 flex flex-col gap-10 items-center">
+            <div className="flex w-full text-4xl">
+                Preguntas Frecuentes
+            </div>
             <div className="flex flex-col gap-20 w-full">
               <Acordion />
             </div>
@@ -274,7 +299,7 @@ export default function Home() {
         </div>
 
         {/** 7 section  */}
-        <div className="w-full  flex flex-col pb-28 px-10 gap-20 ">
+        <div id="Contacto" className="w-full bg-colorSecondary text-colorPrimary py-14 flex flex-col pb-28 px-10 gap-5">
           <div className="flex w-full justify-center text-4xl">Contacto</div>
 
           <div className="w-full flex flex-col gap-10 items-center">
@@ -283,130 +308,32 @@ export default function Home() {
               email...
             </div>
             <div className="flex gap-20 w-full justify-center">
-              
-              <form  className="flex flex-col gap-4 w-[48rem]">
-                
-                <div className="py-4 flex flex-col gap-3">
-                  
-                  <div className="flex gap-4 w-full justify-center ">
-
-                    <div className="flex flex-col ">
-                      <label htmlFor="email">Email</label>
-                      <input
-                      className="w-100 p-2 b-1 border"
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                      />
-                    </div>
-                  
-
-                    <div className="flex flex-col  ">
-                      <label htmlFor="email">Email</label>
-                      <input
-                      className="w-100 p-2 b-1 border"
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4 w-full justify-center">
-
-                    <div className="flex flex-col">
-                      <label htmlFor="email">Email</label>
-                      <input
-                      className="w-100 p-2 b-1 border"
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                      />
-                    </div>
-                  
-
-                    <div className="flex flex-col  ">
-                      <label htmlFor="email">Email</label>
-                      <input
-                      className="w-100 p-2 b-1 border"
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                      />
-                    </div>
-
-                  </div>
-
-                  <div className="flex gap-4 w-full justify-center">
-
-                    <div className="flex flex-col w-full">
-                      <label htmlFor="email">Email</label>
-                      <input
-                      className="w-100 p-2 b-1 border"
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                      />
-                    </div>
-                    
-                  </div>
-                  <div className="flex gap-4 w-full justify-center">
-
-                    <div className="flex flex-col w-full">
-                      <label htmlFor="email">Email</label>
-                      <textarea
-                      className="w-100 p-2 b-1 border"
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                      />
-                    </div>
-                    
-                  </div>
-
-                 
-                  
-
-                 
-                </div>
-
-
-
-                <div className="flex justify-center">
-                  <button
-                    
-                    type="submit"
-                    className="w-40 bg-gray-100 h-10 "
-                  >
-                    Enviar Consulta
-                  </button>
-                </div>
-              </form>
-
+              <SendEmail />
             </div>
 
           </div>
+
         </div>
 
 
 
 
         {/** 8 section  */}
-        <div className="w-full  flex flex-col pb-28 px-10 gap-20 ">
-          <div className="w-full text-lg">
+        <div className="w-full  flex flex-col pb-28 px-10 gap-20 bg-colorSecondary">
+          <div className="w-full text-lg text-colorPrimary flex flex-col gap-6">
+
             <div className="flex w-full text-3xl font-bold">Informacion de contacto</div>
-            <div>+57 3120 000 000</div>
-            <div>ejemplo@gmail.com</div>
-            <div className="flex text-4xl gap-2 ">
+            <div className="flex-col flex gap-2 text-xl">
+              <div>+57 3120 000 000</div>
+              <div>ejemplo@gmail.com</div>
+              <div className="flex text-5xl gap-2 pt-4 ">
               <FaLinkedin />
               <FaFacebookSquare />
             </div>
+
+            </div>
+            
+            
           </div>
           
         </div>

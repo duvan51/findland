@@ -64,9 +64,8 @@ const router = createBrowserRouter([
   {
     path: '/inversor',
     element: (
-      <ProtectedRoute allowedRoles={['INVERSOR']}>
-        <Inversor />
-      </ProtectedRoute>
+      <Inversor />
+  
     ),
     children: [
       {
@@ -108,9 +107,9 @@ const router = createBrowserRouter([
   {
     path: '/beneficiary',
     element: (
-      <ProtectedRoute allowedRoles={['BENEFICIARY']}>
+      
         <Beneficiary />
-      </ProtectedRoute>
+  
     ),
     children: [
       {
@@ -122,9 +121,9 @@ const router = createBrowserRouter([
   {
     path: '/plotowner',
     element: (
-      <ProtectedRoute allowedRoles={['PLOTOWNER']}>
+     
         <Plotowner />
-      </ProtectedRoute>
+  
     ),
     children: [
       {
@@ -136,9 +135,9 @@ const router = createBrowserRouter([
   {
     path: '/owner',
     element: (
-      <ProtectedRoute allowedRoles={['OWNER']}>
+
         <Owner />
-      </ProtectedRoute>
+  
     ),
     children: [
       {
@@ -150,9 +149,9 @@ const router = createBrowserRouter([
   {
     path: '/sealer',
     element: (
-      <ProtectedRoute allowedRoles={['SEALER']}>
+   
         <Sealer />
-      </ProtectedRoute>
+
     ),
     children: [
       {

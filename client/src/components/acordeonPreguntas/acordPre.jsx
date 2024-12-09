@@ -14,18 +14,18 @@ const Accordion = () => {
   ];
 
   return (
-    <div style={{ width: "80%", margin: "0 auto" }}>
+    <div className="w-full" style={{  margin: "0 auto" }}>
       {items.map((item, index) => (
         <div key={index} style={{ marginBottom: "10px", border: "1px solid #ccc", borderRadius: "5px" }}>
           <button
             onClick={() => toggleAccordion(index)}
+            className="border border-colorTerciary bg-colorPrimary"
             style={{
               
               width: "100%",
               padding: "10px",
               textAlign: "left",
-              background: "#f0f0f0",
-              border: "none",
+        
               cursor: "pointer",
               fontWeight: "bold",
             }}
@@ -33,7 +33,12 @@ const Accordion = () => {
             {item.title}
           </button>
           {activeIndex === index && (
-            <div style={{ padding: "10px", background: "#fff", borderTop: "1px solid #ccc" }}>
+            <div
+            className="bg-colorSecondary text-colorPrimary py-4 px-4" 
+              style={{ 
+                  
+                  borderTop: "1px solid #ccc" 
+                  }}>
               {item.content}
             </div>
           )}
