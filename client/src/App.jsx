@@ -32,7 +32,7 @@ import Owner from "./views/plattform/Owner"
 import OwnerDashboard from "./components/plattform/OwnerDashboard"
 import Sealer from "./views/plattform/Sealer"
 import SealerDashboard from "./components/plattform/SealerDashboard"
-import ProtectedRoute from "./components/auth/ProtectedRoute"
+// import ProtectedRoute from "./components/auth/ProtectedRoute"
 import Inicio from "./components/customers/inversor/dashboard/Inicio"
 import AnalysisStatistics from "./components/customers/inversor/dashboard/investments/AnalysisStatistics"
 //# endregion

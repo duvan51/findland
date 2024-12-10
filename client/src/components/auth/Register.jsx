@@ -1,5 +1,5 @@
 import { useState, useActionState, useEffect } from "react";
-import { useFormStatus } from "react-dom";
+// import { useFormStatus } from "react-dom";
 import { Link } from "react-router-dom";
 import { prefix } from "./countries";
 import { signup } from "@/lib/auth.js";
@@ -11,7 +11,7 @@ import { CgDanger } from "react-icons/cg";
 
 export default function Temp() {
   const [state, action] = useActionState(signup, undefined);
-  const { pending } = useFormStatus();
+  // const { pending } = useFormStatus();
 
   useEffect(() => {
     if (state?.data) {
@@ -40,8 +40,8 @@ export default function Temp() {
   }
   const [data, setData] = useState(initialDataState)
 
-  const [showPass, setShowPass] = useState(false)
-  const [showConfirm, setShowConfirm] = useState(false)
+  // const [showPass, setShowPass] = useState(false)
+  // const [showConfirm, setShowConfirm] = useState(false)
 
   const handleCountry = (country) => {
     const found = prefix.find((pref) => pref.country === country);
@@ -92,7 +92,7 @@ export default function Temp() {
       $eye2.classList.toggle("hidden");
     }
   };
-    
+
   const handleChange = event => {
     if (event.target.name === 'phone') {
       setData({
@@ -107,14 +107,10 @@ export default function Temp() {
     }
   };
 
-
-
-
-
   return (
     <div
       style={{ backgroundImage: `url(${image2})` }}
-      className=" w-screen flex flex-col bg-cover bg-center px-6 md:px-0  flex justify-center content-center  flex-wrap "
+      className=" w-screen flex flex-col bg-cover bg-center px-6 md:px-0 justify-center content-center flex-wrap "
     >
       <div className="py-6 inset-0 bg-[#447089] bg-opacity-80 w-full h-full flex flex-col">
         <Navbar />
@@ -166,6 +162,7 @@ export default function Temp() {
               <div
                 className={
                   isFirstForm ? "w-full flex gap-[118px] my-4" : "hidden"
+                }
               >
                 <div className="w-full flex flex-col gap-6">
                   {/**name and apellido */}
@@ -187,7 +184,7 @@ export default function Temp() {
                         />
                         {state?.errors?.firstName && (
                           <p className="flex items-center gap-2 text-xs text-red-500">
-                              <CgDanger />
+                            <CgDanger />
                             {state.errors.firstName}
                           </p>
                         )}
@@ -209,7 +206,7 @@ export default function Temp() {
                         />
                         {state?.errors?.lastName && (
                           <p className="flex items-center gap-2 text-xs text-red-500">
-                              <CgDanger />{state.errors.lastName}</p>
+                            <CgDanger />{state.errors.lastName}</p>
                         )}
                       </div>
                     </div>
@@ -266,7 +263,7 @@ export default function Temp() {
                         </datalist>
                         {state?.errors?.country && (
                           <p className="flex items-center gap-2 text-xs text-red-500">
-                              <CgDanger />{state.errors.country}</p>
+                            <CgDanger />{state.errors.country}</p>
                         )}
                       </div>
                     </div>
@@ -331,7 +328,7 @@ export default function Temp() {
                             value={data.phone}
                             onChange={handleChange}
                           />
-              
+
                         </div>
                       </div>
                     </div>
@@ -462,27 +459,26 @@ export default function Temp() {
                       <CgDanger />{state.errors.confirm}</p>}
                   </div>
                 </div>
-                <span className="font-normal text-[18px] text-colorPrimary"  style={{
-                        textShadow: "2px 2px 5px rgba(0, 0, 0, 0.5)",
-                      }}>
+                <span className="font-normal text-[18px] text-colorPrimary" style={{
+                  textShadow: "2px 2px 5px rgba(0, 0, 0, 0.5)",
+                }}>
                   Configurar Autenticación de 2 Pasos
                 </span>
               </div>
               <div className="flex justify-center">
-                <button
-                  disabled={pending}
-                  type="submit"
+                <Link
+                  to={'/inversor/dashboard/'}
                   className="bg-colorFourth px-3 py-2 cursor-pointer rounded-md font-semibold text-colorPrimary "
                 >
                   CONTINUAR
-                </button>
+                </Link>
               </div>
             </form>
             <span className="font-normal text-base  text-colorPrimary mt-2">
               Ya tienes una cuenta?{" "}
               <Link to="/login" className="font-bold hover:text-gray-200" style={{
-                        textShadow: "2px 2px 5px rgba(0, 0, 0, 0.5)",
-                      }}>
+                textShadow: "2px 2px 5px rgba(0, 0, 0, 0.5)",
+              }}>
                 Inicia sesión
               </Link>
             </span>
