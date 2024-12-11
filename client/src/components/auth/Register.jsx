@@ -1,23 +1,23 @@
-import { useState, useActionState, useEffect } from "react";
+import { useState } from "react";
 // import { useFormStatus } from "react-dom";
 import { Link } from "react-router-dom";
 import { prefix } from "./countries";
-import { signup } from "@/lib/auth.js";
+// import { signup } from "@/lib/auth.js";
 
 import Navbar from "../ui/Navbar";
 import Logo from "../../assets/Logo.png";
 import image2 from "../../assets/register.jpg";
-import { CgDanger } from "react-icons/cg";
+// import { CgDanger } from "react-icons/cg";
 
 export default function Temp() {
-  const [state, action] = useActionState(signup, undefined);
+  // const [state, action] = useActionState(signup, undefined);
   // const { pending } = useFormStatus();
 
-  useEffect(() => {
-    if (state?.data) {
-      console.log(state.data)
-    }
-  }, [state]);
+  // useEffect(() => {
+  //   if (state?.data) {
+  //     console.log(state.data)
+  //   }
+  // }, [state]);
 
   const isSelectedClass =
     "font-bold text-xl text-colorPrimary underline underline-offset-8 cursor-pointer decoration-colorFourth";
@@ -156,7 +156,7 @@ export default function Temp() {
             </div>
 
             <form
-              action={action}
+              // action={action}
               className="w-full flex flex-col items-center gap-[15px]"
             >
               <div
@@ -182,12 +182,12 @@ export default function Temp() {
                           value={data.firstName}
                           onChange={handleChange}
                         />
-                        {state?.errors?.firstName && (
+                        { /* state?.errors?.firstName && (
                           <p className="flex items-center gap-2 text-xs text-red-500">
                             <CgDanger />
                             {state.errors.firstName}
                           </p>
-                        )}
+                        ) */}
                       </div>
                     </div>
                     <div className="w-1/2 flex flex-col gap-[11px] self-stretch">
@@ -204,10 +204,10 @@ export default function Temp() {
                           name="lastName"
                           onChange={handleChange}
                         />
-                        {state?.errors?.lastName && (
+                        {/*state?.errors?.lastName && (
                           <p className="flex items-center gap-2 text-xs text-red-500">
                             <CgDanger />{state.errors.lastName}</p>
-                        )}
+                        )*/}
                       </div>
                     </div>
                   </div>
@@ -229,8 +229,8 @@ export default function Temp() {
                           value={data.email}
                           onChange={handleChange}
                         />
-                        {state?.errors?.email && <p className="flex items-center gap-2 text-xs text-red-500">
-                          <CgDanger />{state.errors.email}</p>}
+                        {/*state?.errors?.email && <p className="flex items-center gap-2 text-xs text-red-500">
+                          <CgDanger />{state.errors.email}</p>*/}
                       </div>
                     </div>
 
@@ -261,10 +261,10 @@ export default function Temp() {
                             </option>
                           ))}
                         </datalist>
-                        {state?.errors?.country && (
+                        {/*state?.errors?.country && (
                           <p className="flex items-center gap-2 text-xs text-red-500">
                             <CgDanger />{state.errors.country}</p>
-                        )}
+                        )*/}
                       </div>
                     </div>
                   </div>
@@ -378,7 +378,7 @@ export default function Temp() {
                             </label>
                           </div>
                         </div>
-                        {state?.errors?.role && <p>{state.errors.role}</p>}
+                        {/*state?.errors?.role && <p>{state.errors.role}</p>*/}
                       </div>
                     </div>
                   </div>
@@ -420,8 +420,8 @@ export default function Temp() {
                       id="eye1-on"
                       onClick={handleVisibilityPass1}
                     />
-                    {state?.errors?.password && <p className="flex items-center gap-2 text-xs text-red-500">
-                      <CgDanger />{state.errors.password}</p>}
+                    {/*state?.errors?.password && <p className="flex items-center gap-2 text-xs text-red-500">
+                      <CgDanger />{state.errors.password}</p>*/}
                   </div>
                 </div>
                 <div className="flex flex-col gap-[11px] self-stretch relative">
@@ -455,8 +455,8 @@ export default function Temp() {
                       id="eye2-on"
                       onClick={handleVisibilityPass2}
                     />
-                    {state?.errors?.confirm && <p className="flex items-center gap-2 text-xs text-red-500">
-                      <CgDanger />{state.errors.confirm}</p>}
+                    {/*state?.errors?.confirm && <p className="flex items-center gap-2 text-xs text-red-500">
+                      <CgDanger />{state.errors.confirm}</p>*/}
                   </div>
                 </div>
                 <span className="font-normal text-[18px] text-colorPrimary" style={{
