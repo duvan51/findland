@@ -1,11 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useActionState, useEffect, useState } from "react";
+// /* eslint-disable react-hooks/exhaustive-deps */
+import { useState } from "react";
 // import { useFormStatus } from "react-dom";
 
-import { signin } from "../../lib/auth";
+// import { signin } from "../../lib/auth";
 
-import { useDispatch } from "react-redux";
-import { setUser } from "../../redux/slices/userSlices";
+// import { useDispatch } from "react-redux";
+// import { setUser } from "../../redux/slices/userSlices";
 
 import { Link } from 'react-router-dom';
 
@@ -17,15 +17,15 @@ import { IoEyeSharp } from "react-icons/io5";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const dispatch = useDispatch();
-  const [state, action] = useActionState(signin, undefined);
+  // const dispatch = useDispatch();
+  // const [state, action] = useActionState(signin, undefined);
   // const { pending } = useFormStatus();
 
-  useEffect(() => {
-    if (state && state.data) {
-      dispatch(setUser(state.data));
-    }
-  }, [state]);
+  // useEffect(() => {
+  //   if (state && state.data) {
+  //     dispatch(setUser(state.data));
+  //   }
+  // }, [state]);
 
   const togglePasswordVisibility = () => {
     event.preventDefault(); // Evita la recarga de la página
@@ -54,7 +54,7 @@ export default function Login() {
               </div>
             </div>
 
-            <form action={action} className="w-2/3 flex flex-col gap-4 ">
+            <form className="w-2/3 flex flex-col gap-4 ">
 
               <div className="py-4 flex flex-col gap-3">
                 <div className="flex flex-col text-xl gap-2 ">
@@ -67,7 +67,7 @@ export default function Login() {
                     placeholder="Email"
                   />
                 </div>
-                {state?.errors?.email && <p>* {state.errors.email}</p>}
+                {/* {state?.errors?.email && <p>* {state.errors.email}</p>} */}
 
                 <div className="flex flex-col text-xl gap-3">
                   <label htmlFor="password" style={{ textShadow: '2px 2px 5px rgba(0, 0, 0, 0.5)' }}>Contraseña</label>
@@ -85,13 +85,13 @@ export default function Login() {
                   </div>
 
                 </div>
-                {state?.errors?.password && (
+                {/* {state?.errors?.password && (
                   <ul>
                     {state.errors.password.map((error) => (
                       <li key={error}>{error}</li>
                     ))}
                   </ul>
-                )}
+                )} */}
               </div>
 
               <div className="flex justify-center">

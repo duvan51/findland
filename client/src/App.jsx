@@ -35,6 +35,7 @@ import SealerDashboard from "./components/plattform/SealerDashboard"
 // import ProtectedRoute from "./components/auth/ProtectedRoute"
 import Inicio from "./components/customers/inversor/dashboard/Inicio"
 import AnalysisStatistics from "./components/customers/inversor/dashboard/investments/AnalysisStatistics"
+import Profile from "./components/customers/inversor/dashboard/profile/Profile"
 //# endregion
 
 //#region CONFIG DE RUTAS
@@ -73,6 +74,9 @@ const router = createBrowserRouter([
         children: [{
           path: '/inversor/dashboard/',
           element: <Inicio />
+        },{
+          path: '/inversor/dashboard/profile',
+          element: <Profile />
         },{
           path: '/inversor/dashboard/investments/analysis',
           element: <AnalysisStatistics />
