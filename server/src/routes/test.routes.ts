@@ -1,8 +1,9 @@
-import { Response, Router, Request } from 'express';
+import { Response, Router, Request, NextFunction } from 'express';
+import { isAuthenticated } from 'src/middlewares/auth';
 
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
+router.get('/', isAuthenticated, (req: Request, res: Response) => {
   res.send('Ok!!')
 });
 

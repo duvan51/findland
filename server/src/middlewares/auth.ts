@@ -4,7 +4,7 @@ import { jwtDecode }  from 'jwt-decode'
 export function isAuthenticated(req: Request, res: Response, next: NextFunction): void {
   let token = req.headers["credential"];
   if (!token && !token?.slice(1)) {
-    res.status(401).json({ message: 'No autorizado. Por favor, inicia sesión.' });
+    res.status(401).json({ message: 'No autorizado.' });
   } 
   try {
       const tkn = token?.slice(1) as string
@@ -12,7 +12,7 @@ export function isAuthenticated(req: Request, res: Response, next: NextFunction)
       console.log(decoded);
       next()
     } catch (error) {
-      return next(error)
+      res.status(401).json({ message: 'No autorizado.' });
     }
 }
 

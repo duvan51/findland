@@ -1,11 +1,20 @@
 import prisma from '../lib/database';
 import { hashSync, compareSync } from 'bcryptjs'
 import { User } from '@prisma/client';
-import { error } from 'console';
 
 //#region OBTENER LISTA
 export const getAllUsers = async () => {
-  return await prisma.user.findMany();
+  try {
+    const users = await prisma.user.findMany();
+    if (!users) return [{ message: 'Error obteniendo usuarios' }]
+    const usersList = users.map(user => {
+      const { password, ...others } = user
+      return others
+    })
+    return [null, usersList]
+  } catch (error) {
+    return [error]
+  }
 };
 //# endregion
 
@@ -20,7 +29,7 @@ export const createUser = async (data: User) => {
       return [{ error: 'Error creando usuario' }]
     }
     const { password, ...user } = newUser
-    return [null, user]
+    return [null, user, user.id, user.email]
   } catch (error) {
     return [{ error: 'Error creando usuario' }]
   }
@@ -28,16 +37,17 @@ export const createUser = async (data: User) => {
 //# endregion
 
 //#region OBTENER USUARIO
-export const getUser = async (data: User) => {
+export const getUser = async (data: { email: string, password: string }) => {
   try {
+    console.log(data);
     const retrievedUser = await prisma.user.findFirst({
-      where: data
+      where: { email: data.email }
     })
     if (!retrievedUser) {
       return [{ error: 'Usuario no existe' }]
     }
     const { password, ...user } = retrievedUser
-    return [null, user]
+    return [null, user, password, user.id, user.email]
   } catch (error) {
     return [{ error: 'Error obteniendo usuario' }]
   }

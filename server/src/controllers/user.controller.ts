@@ -10,7 +10,7 @@ import {
 //#region OBTENER LISTA
 export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
   const [error, users] = await getAllUsers();
-  if (error) return next(error)
+  if (error) return res.status(400).json({error})
   else res.json(users);
 };
 //# endregion
@@ -28,7 +28,7 @@ export const createUserHandler = async (req: Request, res: Response, next: NextF
 export const getUserHandler = async (req: Request, res: Response, next: NextFunction) => {
   const { data } = req.body;
   const [error, user] = await getUser(data);
-  if (error) return next(error)
+  if (error) return res.status(400).json({error})
   else res.json(user);
 };
 //# endregion
