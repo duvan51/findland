@@ -20,7 +20,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["inversor", "solicitanteCredito", "admin"],
       required: true,
-    }
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,  // La cuenta no está verificada por defecto
+    },
+
   },
   { timestamps: true }
 );

@@ -7,6 +7,9 @@ import Auth from "./views/public/Auth"
 import Register from "./components/auth/Register"
 import Login from "./components/auth/Login"
 
+import VerifyEmail from "./components/auth/VerifyEmail"
+import AuthRegister from "./components/auth/authRegister"
+
 // customers pages and components
 import Inversor from "./views/customers/Inversor"
 import InversorDashboard from "./components/customers/InversorDashboard"
@@ -36,12 +39,20 @@ const router = createBrowserRouter([
     element: <Auth />,
     children: [
       {
+        path: '/authRegister',
+        element: <AuthRegister />
+      },
+      {
         path: '/register',
         element: <Register />
       },
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/verifyCount',
+        element: <VerifyEmail />
       }
     ]
   },

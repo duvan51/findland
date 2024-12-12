@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { prefix } from "./countries";
 import Navbar from "../ui/Navbar";
 import Logo from "../../assets/Logo.png";
@@ -10,6 +10,7 @@ import {createUser} from "../../services/user";
 
 
 export default function Temp() {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -99,12 +100,17 @@ export default function Temp() {
     }));
   };
 
+
+  //enviar la info al verify
+  const handleRegisterSuccess = (email) => {
+    navigate('/verifyCount', { state: { email } });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     createUser(data)
-
-    console.log(data)
-
+    const email = data.email
+    handleRegisterSuccess(email);
   };
 
 
@@ -118,7 +124,7 @@ export default function Temp() {
       <div className="w-full min-h-screen py-6 inset-0 bg-[#447089] bg-opacity-80  flex flex-col">
         <Navbar />
         <div className="flex w-full justify-center">
-          <div className="py-10 rounded-lg border-coloPrimary border w-1/2 flex flex-col gap-6 backdrop-blur-sm bg-white/30 text-colorPrimary p-4 items-center">
+          <div className="py-10 px-10 rounded-lg border-coloPrimary border w-1/2 flex flex-col gap-6 backdrop-blur-sm bg-white/30 text-colorPrimary p-4 items-center">
             <div>
               <div className="flex w-full justify-center">
                 <div className=" w-32 h-32 rounded-full ">
@@ -404,7 +410,7 @@ export default function Temp() {
                   </div>
                 </div>
               </div>
-              <button className="w-full py-2 mt-8 bg-colorPrimary text-white rounded-lg">
+              <button type="submit" className="w-full py-2 mt-8 bg-colorFourth text-white rounded-lg">
                 Crear cuenta
               </button>
             </form>

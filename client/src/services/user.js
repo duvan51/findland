@@ -6,6 +6,9 @@ import Swal from 'sweetalert2'
 
 const URL = 'http://localhost:8080/api/users'
 
+
+
+
 export const createUser= async(data)=> {
 
   try {
@@ -40,13 +43,6 @@ export const createUser= async(data)=> {
   }
   
 }
-
-
-
-
-
-
-
 
 
 export async function updateUser({ id, user }) {

@@ -1,9 +1,11 @@
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
+
+import { sendEmail } from "../services/sendGrid.js";
 
 
 
+let otps = {}; 
 
 
 export const registerUser = async (req, res) => {
@@ -23,11 +25,16 @@ export const registerUser = async (req, res) => {
       docLegal,
       rol,
       photeUrl,
-      birthdate
+      birthdate,
+      otp,
+      isVerified
 
     } = req.body;
 
+    
+
     try {
+
       // Validación de campos requeridos
       if (!email || !password || !firstName || !lastName) {
         return res.status(400).json({ message: "Faltan campos obligatorios" });
@@ -54,7 +61,8 @@ export const registerUser = async (req, res) => {
         docLegal,
         rol,
         photeUrl,
-        birthdate
+        birthdate,
+        isVerified: false,
       });
   
       await user.save();
@@ -69,8 +77,23 @@ export const registerUser = async (req, res) => {
         httpOnly: true,
         sameSite: "strict",
       });
+
+
+
+      // Generar OTP y enviarlo
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    otps[email] = { code: otp };  // Guardar OTP sin expiración
+
+    // Enviar el OTP al correo
+    const otpSent = await sendEmail(email, "Verificación de tu cuenta", `Tu código OTP es: ${otp}`);
+
+    if (!otpSent) {
+      return res.status(500).json({ message: 'Error al enviar OTP' });
+    }
+
+
   
-  
+  // Devolver el mensaje con el estado de registro
       return res.status(201).json({
         _id: user._id,
         name: `${user.firstName} ${user.lastName}`,
@@ -138,6 +161,37 @@ const generateToken = (id) => {
   };
 //
 
+
+// generate otp 
+export const verifyOtp = async (req, res)=>{
+  const {email, otp} = req.body;
+
+  try {
+    // Verificar si el OTP existe y es válido
+    const otpData = otps[email];
+    if (!otpData || otpData.code !== otp || Date.now() > otpData.expiresAt) {
+      return res.status(400).json({ message: 'OTP inválido o expirado' });
+    }
+
+    // Eliminar OTP después de su validación exitosa
+    delete otps[email];
+
+    // Marcar la cuenta como verificada
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Usuario no encontrado' });
+    }
+
+    user.isVerified = true; // Marcar el usuario como verificado
+    await user.save();
+
+    return res.status(200).json({ message: 'Cuenta verificada exitosamente' });
+    
+  } catch (error) {
+    console.error('Error al verificar el OTP:', error);
+    res.status(500).json({ message: 'Error al verificar el OTP' });
+  }
+}
 
 
 

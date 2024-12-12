@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import configObject from './config/config.js';
 import open from 'open';  // Importa el paquete open para abrir de una la pagina al iniciar
 import userRoutes from './routes/user.routes.js';
-
+import verifyRoutes from './routes/verify.routes.js'
 
 
 
@@ -23,6 +23,7 @@ app.use(cookieParser());
 
 // Rutas
 app.use('/api/users', userRoutes);
+app.use('/api', verifyRoutes)
 
 
 
