@@ -33,5 +33,3 @@ app.listen(puerto, async () => {
     console.log(`Servidor en funcionamiento en http://localhost:${puerto}`);
     await open(`http://localhost:${puerto}`);  // Abre la URL en el navegador
 });
-
-
