@@ -11,7 +11,7 @@ import verifyRoutes from './routes/verify.routes.js'
 
 
 const app = express();
-const { mongo_url, puerto } = configObject;
+const { mongo_url} = configObject;
 // conexion a la base de datos [done mi cluster]
 mongoose.connect(mongo_url)
     .then(() => console.log("Conexión exitosa!"))
@@ -26,10 +26,10 @@ app.use('/api/users', userRoutes);
 app.use('/api', verifyRoutes)
 
 
-
+const puerto = process.env.PORT || 3000;
 
 // Inicia el servidor y abre la página en el navegador
-app.listen(puerto, async () => {
+app.listen(puerto, () => {
     console.log(`Servidor en funcionamiento en http://localhost:${puerto}`);
-    await open(`http://localhost:${puerto}`);  // Abre la URL en el navegador
+    // Abre la URL en el navegador
 });
